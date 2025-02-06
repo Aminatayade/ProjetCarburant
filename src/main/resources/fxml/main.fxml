@@ -1,65 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.isen.projet.controller.MainController">
-    <children>
 
-        <!-- Barre de navigation -->
-        <VBox layoutX="10" layoutY="10" spacing="10">
-            <Button text="Rechercher" fx:id="btnSearch" onAction="#showSearch" styleClass="button" />
-            <Button text="Itinéraire" fx:id="btnRoute" onAction="#showRoute" styleClass="button" />
-            <Button text="Carte" fx:id="btnMap" onAction="#showMap" styleClass="button" />
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.isen.projet.controller.MainController">
+
+    <top>
+        <HBox spacing="10" alignment="CENTER" styleClass="nav-bar">
+            <TextField fx:id="searchField" promptText="Recherchez une station ou une ville" styleClass="search-field"/>
+            <TextField fx:id="startPointField" promptText="Point de départ" styleClass="search-field"/>
+            <TextField fx:id="endPointField" promptText="Point d'arrivée" styleClass="search-field"/>
+            <Button text="Rechercher" onAction="#handleSearch" styleClass="search-button"/>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox spacing="20" alignment="CENTER">
+            <Label text="Sélectionnez le type de carburant" styleClass="section-title"/>
+            <ComboBox fx:id="fuelTypeComboBox">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Tous"/>
+                        <String fx:value="Diesel"/>
+                        <String fx:value="Essence"/>
+                        <String fx:value="GPL"/>
+                        <String fx:value="Électrique"/>
+                    </FXCollections>
+                </items>
+            </ComboBox>
+
+            <Label text="Autres services" styleClass="section-title"/>
+            <VBox>
+                <CheckBox fx:id="checkToilets" text="Toilettes"/>
+                <CheckBox fx:id="checkGonflage" text="Station de gonflage"/>
+                <CheckBox fx:id="checkShop" text="Boutique alimentaire"/>
+                <CheckBox fx:id="checkRestaurant" text="Restaurant"/>
+            </VBox>
+
+            <Label text="Résultats de la recherche" styleClass="section-title"/>
+            <ListView fx:id="stationListView" prefHeight="200" styleClass="list-view"/>
+
+            <HBox spacing="10">
+                <Button text="Afficher sur la carte" onAction="#showMap"/>
+                <Button text="Afficher en liste" onAction="#showList"/>
+                <Button text="Afficher l'itinéraire" onAction="#showItinerary"/>
+            </HBox>
+
+            <HBox spacing="10" alignment="CENTER">
+                <Button text="Source Principale" onAction="#usePrimarySource" styleClass="data-button"/>
+                <Button text="Source Secondaire" onAction="#useSecondarySource" styleClass="data-button"/>
+            </HBox>
         </VBox>
+    </center>
 
-        <!-- Conteneur principal -->
-        <AnchorPane fx:id="contentPane" layoutX="150" layoutY="10" prefWidth="600" prefHeight="400">
+    <!-- Zone qui va afficher la carte ou l'itinéraire -->
+    <bottom>
+        <BorderPane fx:id="contentPane"/>
+    </bottom>
 
-            <!-- Section Rechercher avec filtres -->
-            <VBox fx:id="searchPane" spacing="10" visible="true">
-                <Label text="Bienvenue dans notre application de recherche de station" styleClass="label" />
-
-                <TextField fx:id="searchField" promptText="Entrez votre recherche" styleClass="text-field" />
-
-                <Label text="Filtrer par type de carburant :" styleClass="label" />
-                <ComboBox fx:id="fuelTypeComboBox">
-                    <items>
-                        <FXCollections fx:factory="observableArrayList">
-                            <String fx:value="Tous" />
-                            <String fx:value="Diesel" />
-                            <String fx:value="Essence" />
-                            <String fx:value="GPL" />
-                            <String fx:value="Électrique" />
-                        </FXCollections>
-                    </items>
-                </ComboBox>
-
-                <Label text="Autres filtres :" styleClass="label" />
-                <CheckBox fx:id="checkToilets" text="Toilettes" />
-                <CheckBox fx:id="checkGonflage" text="Station de gonflage" />
-                <CheckBox fx:id="checkShop" text="Boutique alimentaire" />
-
-                <Button text="Appliquer les filtres" onAction="#handleSearch" styleClass="button" />
-            </VBox>
-
-            <!-- Section Itinéraire -->
-            <VBox fx:id="routePane" spacing="10" visible="false">
-                <Label text="Planification d'itinéraire" styleClass="label" />
-                <TextField fx:id="departureField" promptText="Départ" styleClass="text-field" />
-                <TextField fx:id="destinationField" promptText="Destination" styleClass="text-field" />
-                <Button text="Calculer l'itinéraire" onAction="#handleRoute" styleClass="button" />
-            </VBox>
-
-            <!-- Section Carte -->
-            <VBox fx:id="mapPane" spacing="10" visible="false">
-                <Label text="Visualisation de la carte" styleClass="label" />
-                <Button text="Afficher la carte" onAction="#handleMap" styleClass="button" />
-            </VBox>
-
-        </AnchorPane>
-
-    </children>
-</AnchorPane>
+</BorderPane>

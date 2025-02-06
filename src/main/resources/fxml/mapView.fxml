@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.web.WebView?>
+<?import javafx.scene.control.Label?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="org.isen.projet.controller.MapController">
+    <Label text="Carte des stations-service" />
+    <WebView fx:id="mapWebView" prefWidth="500" prefHeight="300"/>
+</VBox>

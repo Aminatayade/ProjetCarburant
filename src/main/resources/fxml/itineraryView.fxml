@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.web.WebView?>
+<?import javafx.scene.control.Label?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="org.isen.projet.controller.ItineraryController">
+    <Label text="Itinéraire vers la station-service"/>
+    <WebView fx:id="itineraryWebView" prefWidth="500" prefHeight="300"/>
+</VBox>

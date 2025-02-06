@@ -7,22 +7,13 @@ import javafx.stage.Stage
 
 class HelloApplication : Application() {
     override fun start(stage: Stage) {
-        try {
-            // Charger le fichier FXML
-            val loader = FXMLLoader(javaClass.getResource("/fxml/main.fxml"))
-            val root = loader.load<Any>()
+        val fxmlLoader = FXMLLoader(HelloApplication::class.java.getResource("/fxml/main.fxml"))
+        val scene = Scene(fxmlLoader.load())
+        scene.stylesheets.add(HelloApplication::class.java.getResource("/css/styles.css").toExternalForm())
 
-            // Créer la scène
-            val scene = Scene(root as javafx.scene.Parent)
-            scene.stylesheets.add(javaClass.getResource("/css/styles.css").toExternalForm())
-
-            // Configurer la fenêtre principale
-            stage.title = "StationService"
-            stage.scene = scene
-            stage.show()
-        } catch (e: Exception) {
-            e.printStackTrace() // Afficher l'exception si une erreur se produit
-        }
+        stage.title = "Modern Fuel Station App"
+        stage.scene = scene
+        stage.show()
     }
 }
 

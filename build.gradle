@@ -33,13 +33,18 @@ kotlin {
 
 javafx {
     version = '21'
-    modules = ['javafx.controls', 'javafx.fxml', 'javafx.media']
+    modules = ['javafx.controls', 'javafx.fxml', 'javafx.media','javafx.web']
 }
 
 dependencies {
+    implementation("org.json:json:20231013") // Version la plus récente
+
     implementation('org.controlsfx:controlsfx:11.2.1')
     implementation('com.dlsc.formsfx:formsfx-core:11.6.0') {
         exclude(group: 'org.openjfx')
+
+
+
 
     }
     implementation('org.kordamp.bootstrapfx:bootstrapfx-core:0.4.0')
